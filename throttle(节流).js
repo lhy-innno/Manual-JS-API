@@ -22,3 +22,27 @@ let throttle2 = (func, wait) => {
     }
   }
 }
+
+
+let throttle3 = (fn, delay) => {
+  let pre = 0
+  let now, args, context
+  let timer = null
+  let later = function () {
+    timer = null
+    pre = now
+    fn.call(context, args)
+  }
+  return function () {
+    args = arguments
+    context = this
+    now = +new Date()
+    let remain = delay - (now - pre)
+    if (remain<=0) {
+      pre = now
+      fn.apply(context, args)
+    } else if (!timer) {
+      setTimeout(later, remain)
+    }
+  }
+}
