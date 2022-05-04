@@ -7,6 +7,11 @@ class _Promise {
     this.reject = this.reject.bind(this)
     this.onFulfilledCallbacks = []
     this.onRejectedCallbacks = []
+    try {
+      executor(this.resolve, this.reject)
+    } catch (err) {
+      this.reject(err)
+    }
   }
 
 
@@ -129,7 +134,6 @@ class _Promise {
   }
 
   static any(promises) {
-    let res = []
     return new Promise((resolve, reject) =>{
       let count = 0
       promises.forEach((promise) => {
