@@ -22,4 +22,22 @@ let unique4 = array => {
 }
 
 // 方法5，双重循环遍历
+
 // 方法6，单重循环，哈希表
+
+// 方法7，利用Object键的唯一性
+let unique7 = array => {
+  let res = []
+  let obj = {}
+  for (let item of array) {
+    if (!Object.keys(obj).includes(item.toString())) {
+      res.push(item)
+      obj[item] = 1
+    } else {
+      obj[item]++
+    }
+  }
+  return res
+}
+
+console.log(unique7([1,'a12a',1,[1,2,3],[1,2,3],{A:6, ss: function () {console.log(22)}},{A:6, ss: function () {console.log(22)}}]))
