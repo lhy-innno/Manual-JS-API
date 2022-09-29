@@ -5,6 +5,10 @@
 // （返回对象的具体类型），所以采用obj.toString()不能得到其对象类型，只能将obj转
 // 换为字符串类型；因此，在想要得到对象的具体类型时，应该调用Object上原型toString方法。
 let Typeof = obj => {
+  let type = typeof obj
+  if (type !== 'object') {
+    return type
+  }
   return Object.prototype.toString.call(obj).slice(8, -1).toLowerCase()
 }
 console.log(Typeof([]))
