@@ -14,5 +14,6 @@ function add (a, b, c, d) {
 
 let ss = curry(add)
 console.log(ss(2)(7,8)(3))
+console.log(ss(2,8)(7)(3))
 
 
